@@ -1,2 +1,3 @@
 # Weather-App
-<a href="psychedelic-glass.surge.sh">DEMO</a>
+copy this link: psychedelic-glass.surge.sh
+
