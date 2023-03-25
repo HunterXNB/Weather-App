@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href=".//css/style.css" />
+    <link rel="stylesheet" href="./css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="today">
+        <div class="location">
+          <input type="checkbox" name="" id="handle" checked />
+          <label id="search-location" for="handle">Search for places</label>
+          <label for="handle">
+            <i class="fa-solid fa-location-crosshairs"></i>
+          </label>
+        </div>
+        <img src="./images/Cloud-background.png" id="four-clouds" alt="" />
+        <img src="./images/Shower.png" alt="" class="todays-weather-img" />
+        <p class="temp"><span>15</span><span class="deg">&deg;C</span></p>
+        <div class="todays-data">
+          <h2 class="cond">Shower</h2>
+          <p class="date">
+            Today <sup>.</sup> <span class="date-str">Fri, 5 Jun</span>
+          </p>
+          <p class="current-location">
+            <i class="fa-solid fa-location-dot fa-xl"></i>
+            <span>Helsinki</span>
+          </p>
+        </div>
+      </div>
+      <div class="find-location">
+        <label for="handle">X</label>
+        <form action="" class="location-form">
+          <label
+            for="sea
+          "
+            class="location-search"
+            ><i class="fa-solid fa-magnifying-glass"></i
+            ><input id="search" placeholder="search location" type="text"
+          /></label>
+          <input type="submit" value="Search" />
+        </form>
+        <div>
+          <select name="cities" id="cities">
+            <option value="london" selected>London</option>
+          </select>
+        </div>
+      </div>
+      <div class="other">
+        <div class="unit">
+          <span class="cel activated">&deg;C</span>
+          <span class="feh">&deg;F</span>
+        </div>
+        <div class="coming-days-data">
+          <div class="day-data">
+            <div class="date">Tommorrow</div>
+            <img src="./images/Snow.png" alt="" />
+            <div class="degrees">
+              <span class="max">16&deg;C</span>
+              <span class="min">11&deg;C</span>
+            </div>
+          </div>
+          <div class="day-data">
+            <div class="date">Tommorrow</div>
+            <img src="./images/Snow.png" alt="" />
+            <div class="degrees">
+              <span class="max">16&deg;C</span>
+              <span class="min">11&deg;C</span>
+            </div>
+          </div>
+          <div class="day-data">
+            <div class="date">Tommorrow</div>
+            <img src="./images/Snow.png" alt="" />
+            <div class="degrees">
+              <span class="max">16&deg;C</span>
+              <span class="min">11&deg;C</span>
+            </div>
+          </div>
+          <div class="day-data">
+            <div class="date">Tommorrow</div>
+            <img src="./images/Snow.png" alt="" />
+            <div class="degrees">
+              <span class="max">16&deg;C</span>
+              <span class="min">11&deg;C</span>
+            </div>
+          </div>
+          <div class="day-data">
+            <div class="date">Tommorrow</div>
+            <img src="./images/Snow.png" alt="" />
+            <div class="degrees">
+              <span class="max">16&deg;C</span>
+              <span class="min">11&deg;C</span>
+            </div>
+          </div>
+        </div>
+        <div class="highlights">
+          <h2>Today’s Hightlights</h2>
+          <div class="highlights-data">
+            <div class="data wind">
+              <h4>Wind status</h4>
+              <p>7mph</p>
+              <div class="dir">
+                <span><i class="fa-solid fa-location-arrow"></i></span>
+              </div>
+            </div>
+            <div class="data humidity">
+              <h4>Humidity</h4>
+              <p>84%</p>
+              <div><span>0</span> <span>50</span> <span>100</span></div>
+              <p class="value"><span></span></p>
+            </div>
+            <div class="data visibility">
+              <h4>Visibility</h4>
+              <p>6,4 miles</p>
+            </div>
+            <div class="data airpress">
+              <h4>Air Pressure</h4>
+              <p>998 mb</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./main.js"></script>
+  </body>
+</html>
