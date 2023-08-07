@@ -5,6 +5,10 @@ const start_date = new Date()
 const currentLoc = document.querySelector(".current-location span")
 const citySearch = document.querySelector(".location-search>input")
 const form = document.querySelector("form")
+let yourLocation = {}
+navigator.geolocation.getCurrentPosition((p) => {
+    yourLocation = p.coords
+})
 let unit = "&deg;C"
 let end_date = new Date()
 const feh = document.querySelector(".feh")
@@ -25,11 +29,11 @@ const select = document.querySelector("#cities")
 
 async function getCities() {
     const cities = await (await fetch("https://raw.githubusercontent.com/lmfmaier/cities-json/master/cities500.json")).json()
-    let modCities = cities.filter(el => el.name.toLowerCase().includes(citySearch.value)).sort((a, b) => a.name > b.name ? 1 : -1).map(el => {
+    let modCities = cities.filter(el => el.name.toLowerCase().startsWith(citySearch.value)).sort((a, b) => a.name > b.name ? 1 : -1).map(el => {
         return `<option data-lat="${el.lat}" data-lon="${el.lon}" value="${el.name} "${el.country.toLowerCase()}"">${el.name} "${el.country.toLowerCase()}"</option>`
     })
     modCities.length = 50
-    select.innerHTML = modCities.join("")
+    select.innerHTML = `${yourLocation.longitude && "<option value='Your Location'>Your Location</option>"}${modCities.join("")}`
 
 
     currentLoc.textContent = select.value
@@ -55,7 +59,7 @@ function updateDates() {
     })
 }
 async function updateTodayData() {
-    const api = `https://api.open-meteo.com/v1/forecast?latitude=${select.selectedOptions[0].dataset.lat || 30.09}&longitude=${select.selectedOptions[0].dataset.lon || 31.59}&hourly=relativehumidity_2m,surface_pressure,visibility&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&${unit == "&deg;F" ? "temperature_unit=fahrenheit" : ""}&windspeed_unit=mph&start_date=${startDate}&end_date=${endDate}&timezone=Africa%2FCairo`
+    const api = `https://api.open-meteo.com/v1/forecast?latitude=${select.selectedOptions[0].dataset.lat || yourLocation.latitude}&longitude=${select.selectedOptions[0].dataset.lon || yourLocation.longitude}&hourly=relativehumidity_2m,surface_pressure,visibility&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&${unit == "&deg;F" ? "temperature_unit=fahrenheit" : ""}&windspeed_unit=mph&start_date=${startDate}&end_date=${endDate}&timezone=Africa%2FCairo`
     const weatherData = await (await fetch(api)).json()
     const todayTemp = document.querySelector(".temp :first-child")
     todayTemp.textContent = `${Math.trunc(weatherData["current_weather"].temperature)}`
@@ -118,7 +122,7 @@ async function updateTodayData() {
 }
 async function updateNextDaysData() {
 
-    const api = `https://api.open-meteo.com/v1/forecast?latitude=${select.selectedOptions[0].dataset.lat || 30.09}&longitude=${select.selectedOptions[0].dataset.lon || 31.59}&hourly=relativehumidity_2m,surface_pressure,visibility&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&${unit == "&deg;F" ? "temperature_unit=fahrenheit" : ""}&windspeed_unit=mph&start_date=${startDate}&end_date=${endDate}&timezone=Africa%2FCairo`
+    const api = `https://api.open-meteo.com/v1/forecast?latitude=${select.selectedOptions[0].dataset.lat || 30.9}&longitude=${select.selectedOptions[0].dataset.lon || 31.59}&hourly=relativehumidity_2m,surface_pressure,visibility&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&${unit == "&deg;F" ? "temperature_unit=fahrenheit" : ""}&windspeed_unit=mph&start_date=${startDate}&end_date=${endDate}&timezone=Africa%2FCairo`
     const { daily: weatherData } = await (await fetch(api)).json()
     const maxTemp = document.querySelectorAll(".max")
     const minTemp = document.querySelectorAll(".min")
