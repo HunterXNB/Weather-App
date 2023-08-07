@@ -8,6 +8,7 @@ const form = document.querySelector("form")
 let yourLocation = {}
 navigator.geolocation.getCurrentPosition((p) => {
     yourLocation = p.coords
+    getCities()
 })
 let unit = "&deg;C"
 let end_date = new Date()
