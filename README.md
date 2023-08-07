@@ -1,3 +1,3 @@
 # Weather-App
-copy this link: psychedelic-glass.surge.sh
+### [DEMO](https://hunterxnb.github.io/Weather-App/)
 
